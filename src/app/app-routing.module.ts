@@ -11,10 +11,10 @@ import {AdminGuardService} from '../@shared/guards/admin-guard.service';
 import {AdminComponent} from './features/admin/admin.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent, canActivate: [NotAuthGuardService]},
   {path: 'register', component: RegisterComponent, canActivate: [NotAuthGuardService]},
-  {path: 'profile/:username', component: UserProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'profile/:userId', component: UserProfileComponent, canActivate: [AuthGuardService]},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService, AdminGuardService]},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];

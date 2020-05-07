@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../core/services/user.service';
 import {TokenStorageService} from '../../core/services/token-storage.service';
 import {User} from '../../core/model/user';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-profile',
@@ -9,24 +10,26 @@ import {User} from '../../core/model/user';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  content: User;
+  userDetails: User;
+  userId: string;
 
-  constructor(private userService: UserService, private tokenStorage: TokenStorageService) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.getUserDetails(this.tokenStorage.getUser().username);
-    }
+    this.userId = this.route.snapshot.params.userId;
+    this.getUserDetailsByUserId(this.userId);
   }
 
-  private getUserDetails(userName: string) {
-    this.userService.getUserByUserName(userName).subscribe(
+  private getUserDetailsByUserId(userId: string) {
+    this.userService.getUserByUserId(userId).subscribe(
       data => {
-        this.content = data;
+        this.userDetails = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+       this.router.navigate(['/home']);
       }
     );
   }

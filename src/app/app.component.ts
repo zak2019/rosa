@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+  userId: string;
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.showModeratorBoard = this.roles.indexOf('ROLE_MODERATOR') > -1;
 
           this.username = user.username;
+          this.userId = user.userId;
         }
     })
     // this.isLoggedIn = !!this.tokenStorageService.getToken();

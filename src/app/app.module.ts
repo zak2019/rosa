@@ -14,6 +14,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './core/modules/material.module';
 import {UserProfileComponent} from './features/profile/user-profile.component';
 import {AdminModule} from './features/admin/admin.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {AdminModule} from './features/admin/admin.module';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

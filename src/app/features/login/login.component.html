@@ -22,47 +22,47 @@
 
       <!-- Email -->
       <!--<mat-form-field class="example-full-width">-->
-        <!--<input matInput placeholder="Email" formControlName="email">-->
+      <!--<input matInput placeholder="Email" formControlName="email">-->
       <!--</mat-form-field>-->
 
       <!-- Gender -->
       <!--<div class="misc-bottom-padding">-->
-        <!--<mat-label>Gender:</mat-label>-->
-        <!--<mat-radio-group aria-label="Select an option" formControlName="gender">-->
-          <!--<mat-radio-button value="Male">Male</mat-radio-button>-->
-          <!--<mat-radio-button value="Female">Female</mat-radio-button>-->
-        <!--</mat-radio-group>-->
+      <!--<mat-label>Gender:</mat-label>-->
+      <!--<mat-radio-group aria-label="Select an option" formControlName="gender">-->
+      <!--<mat-radio-button value="Male">Male</mat-radio-button>-->
+      <!--<mat-radio-button value="Female">Female</mat-radio-button>-->
+      <!--</mat-radio-group>-->
       <!--</div>-->
 
       <!-- Date picker -->
       <!--<mat-form-field>-->
-        <!--<input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob"-->
-               <!--(dateChange)="date($event)">-->
-        <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-        <!--<mat-datepicker #picker></mat-datepicker>-->
+      <!--<input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob"-->
+      <!--(dateChange)="date($event)">-->
+      <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+      <!--<mat-datepicker #picker></mat-datepicker>-->
       <!--</mat-form-field>-->
 
       <!--&lt;!&ndash; Class &ndash;&gt;-->
       <!--<mat-form-field>-->
-        <!--<mat-label>Grade</mat-label>-->
-        <!--<mat-select [(value)]="selected" formControlName="grade">-->
-          <!--<mat-option [value]="gradeArray" *ngFor="let gradeArray of GradeArray">{{gradeArray}}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
+      <!--<mat-label>Grade</mat-label>-->
+      <!--<mat-select [(value)]="selected" formControlName="grade">-->
+      <!--<mat-option [value]="gradeArray" *ngFor="let gradeArray of GradeArray">{{gradeArray}}-->
+      <!--</mat-option>-->
+      <!--</mat-select>-->
       <!--</mat-form-field>-->
 
       <!--&lt;!&ndash; Add Subjects &ndash;&gt;-->
       <!--<mat-form-field class="multiple-items">-->
-        <!--<mat-chip-list #chipList>-->
-          <!--<mat-chip *ngFor="let subjectsArray of SubjectsArray" [selectable]="selectable" [removable]="removable"-->
-                    <!--(removed)="remove(subjectsArray)">-->
-            <!--{{subjectsArray.name}}-->
-            <!--<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
-          <!--</mat-chip>-->
-          <!--<input placeholder="Add subjects" [matChipInputFor]="chipList"-->
-                 <!--[matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"-->
-                 <!--(matChipInputTokenEnd)="add($event)">-->
-        <!--</mat-chip-list>-->
+      <!--<mat-chip-list #chipList>-->
+      <!--<mat-chip *ngFor="let subjectsArray of SubjectsArray" [selectable]="selectable" [removable]="removable"-->
+      <!--(removed)="remove(subjectsArray)">-->
+      <!--{{subjectsArray.name}}-->
+      <!--<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+      <!--</mat-chip>-->
+      <!--<input placeholder="Add subjects" [matChipInputFor]="chipList"-->
+      <!--[matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"-->
+      <!--(matChipInputTokenEnd)="add($event)">-->
+      <!--</mat-chip-list>-->
       <!--</mat-form-field>-->
 
       <!-- On Submit -->
