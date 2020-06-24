@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('zoalka app is running!');
+    expect(page.getTitleText()).toEqual('zak-front app is running!');
   });
 
   afterEach(async () => {

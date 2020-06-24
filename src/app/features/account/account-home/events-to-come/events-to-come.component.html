@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-content *ngIf="page.size > 0">
+    <div class="text-center">
+      <mat-card-title>NEXT EVENT COUNTDOWN TIMER</mat-card-title>
+      <h4 class="m-b-0">{{nextEvent?.name}}</h4>
+      <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+        <app-countdown class="next-event-countdown"
+                       units="Days | Hours | Minutes | Seconds"
+                       end="{{nextEvent?.eventDate}}"
+                       [currentEvent]="nextEvent"
+                       [enableDynamic]="true"
+                       (reached)="eventReached($event)"></app-countdown>
+      </div>
+      <hr>
+    </div>
+    <mat-list *ngIf="page.size > 1">
+      <mat-card-title class="text-center">EVENTS TO COME</mat-card-title>
+      <app-events-to-come-row *ngFor="let event of eventsToComeList" [event]="event"></app-events-to-come-row>
+      <!--<mat-list-item *ngFor="let message of messages">-->
+      <!--<img mat-list-avatar [src]="message.image" alt="Image of {{message.from}}">-->
+      <!--<h3 matLine>{{message.from}}</h3>-->
+      <!--<p matLine class="text-muted">{{message.content}}</p>-->
+      <!--</mat-list-item>-->
+    </mat-list>
+  </mat-card-content>
+  <mat-card-content *ngIf="page.size === 0">
+    <mat-card-title class="text-center">YOU HAVE NO EVENTS TO COME</mat-card-title>
+  </mat-card-content>
+</mat-card>

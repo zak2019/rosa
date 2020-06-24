@@ -1,0 +1,53 @@
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  .measurements {
+    flex: 0.1;
+    width: 40px;
+    margin-right: 21px;
+
+    .spinner {
+
+    }
+
+    .divider {
+      float: right;
+    }
+  }
+}
+
+.simple-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-width: 100px;
+  margin-top: -23px;
+
+  .measurements {
+    flex: 0.1;
+    width: 40px;
+
+    .divider {
+      float: right;
+    }
+  }
+}
+
+.spinner-value {
+  position: relative;
+  top: -32px;
+  text-align: center;
+  width: 40px
+}
+.spinner-text {
+  width: 60px;
+  margin-top: -20px;
+  text-align: center;
+  margin-left: -9px;
+}

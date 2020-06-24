@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {TokenStorageService} from '../../app/core/services/token-storage.service';
 import {Observable} from 'rxjs/internal/Observable';
+import {RoleService} from "../../app/core/services/role.service";
 
 
 @Injectable({
@@ -9,20 +10,23 @@ import {Observable} from 'rxjs/internal/Observable';
 })
 export class AdminGuardService implements CanActivate {
 
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) {
+  constructor(private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private roleServie: RoleService) {
   }
 
   // the Router call canActivate() method,
   // if canActivate is registered in Routes[]
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const accountId = state.url.split('/')[2];
+
     // here we check if user is logged in or not
     if (!!this.tokenStorageService.getToken()) {
       // just return true - if user is logged in
-      const roles = this.tokenStorageService.getUser().roles;
-      if(roles.indexOf('ROLE_ADMIN') > -1) {
+      if(this.roleServie.isUserAdmin(this.tokenStorageService.getUserRoles(), accountId)) {
         return true;
       } else {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/account/', accountId]);
         return false;
       }
     }

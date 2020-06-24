@@ -1,0 +1,32 @@
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+
+  height: 270px;
+  top: 0;
+  justify-content: center;
+  align-items: start;
+}
+.middle-section {
+  padding-top: 10px;
+}
+
+.top {
+  top: 13px
+}
+
+#wrapper {
+  width: 95%;
+  margin: auto;
+  background-color: #fafafa;
+}
+
+.counter-component {
+  padding: 21px;
+}
+
+@media  only screen and (max-width: 1277px) {
+  .display-none {
+    display: none;
+  }
+}

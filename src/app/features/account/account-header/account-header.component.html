@@ -1,0 +1,41 @@
+<mat-toolbar class="single-row-adapter" *ngIf="account">
+<div class="header">
+  <div class="header-left">
+    <ul>
+      <li>
+       <span class="material-icons clickable">home</span>
+      </li>
+      <li>
+        >
+      </li>
+      <li>
+       <span>BNP Paribas Corporate and Institutional Banking</span>
+      </li>
+      <li *ngIf="showAccountName">
+        >
+      </li>
+      <li (click)="navigateToAccount()" *ngIf="showAccountName">
+       <span class="clickable">{{account.accountName}}</span>
+      </li>
+      <li *ngIf="showAdminLink">
+        >
+      </li>
+      <li (click)="navigateToAccountAdminPage()" *ngIf="showAdminLink">
+       <span class="clickable">Admin</span>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--<div class="header">-->
+  <!--<div class="header-left">-->
+    <!--<ul>-->
+      <!--<li [routerLink]="'/account'" class="li-border-right">-->
+        <!--Dashboard-->
+      <!--</li>-->
+      <!--<li [routerLink]="'/account'">-->
+        <!--Teams-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->
+</mat-toolbar>

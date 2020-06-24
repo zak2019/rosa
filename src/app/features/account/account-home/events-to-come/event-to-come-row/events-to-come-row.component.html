@@ -1,0 +1,7 @@
+<mat-list-item>
+<h3 matLine>{{event.name}}</h3>
+<p matLine class="text-muted">{{event.eventDate | date:'d/M/yy, h:mm a'}}</p>
+<!--<countdown [config]="countDownConfig"></countdown>-->
+  <app-countdown units="Days | Hours | Minutes | Seconds"  end="{{event.eventDate}}" [simpleTimer]="true"></app-countdown>
+</mat-list-item>
+<hr>

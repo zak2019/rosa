@@ -1,0 +1,89 @@
+<!--<div *ngIf="isLoggedIn">-->
+<!--<span> Bonjour {{username}} </span>-->
+<!--</div>-->
+
+<!--<div *ngIf="!isLoggedIn">-->
+<!--<span>No user logged in yet</span>-->
+<!--</div>-->
+
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div class="page-content">
+  <div fxLayout="row wrap">
+    <!-- column -->
+    <div fxFlex.gt-lg="33" fxFlex.gt-md="33" fxFlex.gt-xs="100" *ngFor="let item of associatedAcounts"
+         (click)="navigateToAccount(item.account.accountId)">
+      <mat-card>
+        <mat-card-content>
+          <div class="d-flex flex-wrap">
+            <div>
+              <mat-card-title>{{item.account.accountName}}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+              <mat-card-footer></mat-card-footer>
+            </div>
+            <div class="ml-auto">
+              <ul class="list-inline">
+                <li>
+                  <h6 class="text-success m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10 "></i>Ample</h6>
+                </li>
+                <li>
+                  <h6 class=" text-info m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10"></i>Pixel</h6>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div fxFlex.gt-lg="33" fxFlex.gt-md="33" fxFlex.gt-xs="100" *ngFor="let item of associatedAcounts">
+      <mat-card>
+        <mat-card-content>
+          <div class="d-flex flex-wrap">
+            <div>
+              <mat-card-title>{{item.account.accountName}}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+              <mat-card-footer></mat-card-footer>
+            </div>
+            <div class="ml-auto">
+              <ul class="list-inline">
+                <li>
+                  <h6 class="text-success m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10 "></i>Ample</h6>
+                </li>
+                <li>
+                  <h6 class=" text-info m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10"></i>Pixel</h6>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxFlex.gt-lg="33" fxFlex.gt-md="33" fxFlex.gt-xs="100" *ngFor="let item of associatedAcounts">
+      <mat-card>
+        <mat-card-content>
+          <div class="d-flex flex-wrap">
+            <div>
+              <mat-card-title>{{item.account.accountName}}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+              <mat-card-footer></mat-card-footer>
+            </div>
+            <div class="ml-auto">
+              <ul class="list-inline">
+                <li>
+                  <h6 class="text-success m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10 "></i>Ample</h6>
+                </li>
+                <li>
+                  <h6 class=" text-info m-0"><i class="mdi mdi-checkbox-blank-circle font-10 m-r-10"></i>Pixel</h6>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

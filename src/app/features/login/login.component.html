@@ -1,5 +1,9 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="display-middle">
   <mat-sidenav-content>
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>Fill out your username and passxord </mat-card-subtitle>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
       <!-- userName -->
@@ -81,5 +85,58 @@
       </div>
 
     </form>
+      </mat-card-content>
+    </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+<!--<mat-sidenav-container>-->
+<!--<mat-sidenav-content>-->
+<!--<div fxLayout="row" fxLayoutWrap="wrap">-->
+  <!--&lt;!&ndash; Card column &ndash;&gt;-->
+  <!--<div fxFlex.gt-sm="100%" fxFlex="100">-->
+    <!--<mat-tab>-->
+      <!--<mat-card-content>-->
+        <!--<mat-card-title>Form Basic Layouts</mat-card-title>-->
+        <!--&lt;!&ndash; ============================================================== &ndash;&gt;-->
+        <!--&lt;!&ndash; column &ndash;&gt;-->
+        <!--&lt;!&ndash; ============================================================== &ndash;&gt;-->
+        <!--<form class="basic-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
+          <!--<div fxLayout="row wrap">-->
+            <!--&lt;!&ndash; column &ndash;&gt;-->
+            <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+              <!--<mat-form-field class="example-full-width">-->
+                <!--<input matInput placeholder="UserName" formControlName="username">-->
+                <!--&lt;!&ndash; error&ndash;&gt;-->
+                <!--<mat-error *ngIf="!loginForm.controls.username.untouched && !loginForm.controls.username.valid">-->
+                  <!--Password must be at least <strong>3</strong> characters-->
+                <!--</mat-error>-->
+              <!--</mat-form-field>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; column &ndash;&gt;-->
+            <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+              <!--<mat-form-field class="example-full-width">-->
+                <!--<input matInput type="password" placeholder="Password" formControlName="password">-->
+                <!--&lt;!&ndash; error&ndash;&gt;-->
+                <!--<mat-error *ngIf="!loginForm.controls.password.untouched && !loginForm.controls.password.valid">-->
+                  <!--Password must be at least <strong>6</strong> characters with at least <strong>one number</strong>-->
+                <!--</mat-error>-->
+              <!--</mat-form-field>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="button-wrapper">-->
+            <!--<button mat-flat-button color="primary" [disabled]="!loginForm.valid">Submit</button>-->
+          <!--</div>-->
+          <!--<div class="alert alert-danger"-->
+               <!--role="alert"-->
+               <!--*ngIf="isLoginFailed">-->
+            <!--Login failed: {{ errorMessage }}-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</mat-card-content>-->
+    <!--</mat-tab>-->
+  <!--</div>-->
+<!--</div>-->
+<!--</mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->

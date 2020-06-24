@@ -1,0 +1,13 @@
+<div class="dialog-content">
+  <mat-card-content>
+    <mat-card-title><span class="material-icons">warning</span>
+      {{data.dialogTitle}}
+    </mat-card-title>
+    <p>{{data.message}} <b>{{data.value}}</b></p>
+  </mat-card-content>
+
+  <div mat-dialog-actions class="floatRight">
+    <button mat-raised-button (click)="onCloseClick()">{{data.cancelLabel}}</button>
+    <button mat-raised-button color="primary" (click)="confirm()">{{data.confirmationLabel}}</button>
+  </div>
+</div>

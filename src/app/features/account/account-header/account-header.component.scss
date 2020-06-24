@@ -1,0 +1,57 @@
+.mat-toolbar {
+  padding: 0px;
+  height: auto;
+}
+
+.header {
+  height: 40px;
+  background-color: #1e88e5;
+  width: 100%;
+}
+
+.header li {
+  float: left;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  height: 36px;
+  padding: 7px 0 0 5px;
+}
+
+//.li-border-left {
+//  border-left: 1px solid #1f84bf;
+//}
+//
+//.li-border-right {
+//  border-right: 1px solid #1f84bf;
+//}
+
+//.logo {
+//  height: 24px;
+//}
+
+
+.header-right {
+  float: right;
+  margin-right: 15px;
+}
+
+.header-left {
+  float: left;
+  margin-left: -35px;
+}
+
+ul {
+  margin-top: 0px;
+  li{
+    display:inline;
+  }
+}
+.material-icons {
+  font-size: 18px;
+  padding: 5px;
+}
+.text {
+  padding-top: 5px !important;
+}

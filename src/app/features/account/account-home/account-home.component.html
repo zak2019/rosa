@@ -1,0 +1,46 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content class="page-wrapper">
+    <div class="page-content">
+      <div fxLayout="row wrap">
+        <div class="sticky display-none" fxFlex.gt-lg="20" fxFlex.gt-md="20" fxFlex.gt-xs="0" fxFlex="20">
+          <app-profile-card></app-profile-card>
+        </div>
+
+        <div fxFlex.gt-lg="55" fxFlex.gt-md="55" fxFlex.gt-xs="100" fxFlex="100">
+          <div *ngFor="let event of eventList">
+            <app-publication [event]="event">	<mat-spinner></mat-spinner></app-publication>
+          </div>
+          <button (click)="getMoreEvents()"> more events</button>
+        </div>
+
+        <div class="display-none" fxFlex.gt-lg="25" fxFlex.gt-md="25" fxFlex.gt-xs="0" fxFlex="100">
+          <div>
+          <mat-card>
+            <mat-card-content class="counter-component">
+              <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
+                <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                  <h3 class="m-0 font-light">1099</h3>
+                  <small>Articles</small>
+                </div>
+                <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                  <h3 class="m-0 font-light">23,469</h3>
+                  <small>Followers</small>
+                </div>
+                <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
+                  <h3 class="m-0 font-light">6035</h3>
+                  <small>Likes</small>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          </div>
+          <div class="sticky top" >
+         <app-events-to-come *ngIf="accountId"
+                             [userId]="userId"
+                             [accountId]="accountId"></app-events-to-come>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

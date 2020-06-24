@@ -18,10 +18,25 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatSortModule} from "@angular/material/sort";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
 
 @NgModule({
   imports: [
+    MatProgressSpinnerModule,
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
@@ -41,8 +56,19 @@ import {MatCardModule} from "@angular/material/card";
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatSortModule,
+    MatSnackBarModule,
+    FlexLayoutModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ],
   exports: [
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
@@ -60,6 +86,16 @@ import {MatCardModule} from "@angular/material/card";
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     MatDatepickerModule,

@@ -1,5 +1,11 @@
-<div>
-  {{userDetails?.userId}} <br />
-  {{userDetails?.email}}  <br />
-  {{userDetails?.username}} <br />
-</div>
+<mat-sidenav-container class="container" autosize>
+  <mat-sidenav #sidenav mode="side">
+    <app-navigation-menu><app-spinner></app-spinner></app-navigation-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet><app-spinner></app-spinner></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

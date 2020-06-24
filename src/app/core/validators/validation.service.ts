@@ -53,7 +53,6 @@ export class ValidationService {
 
     password = AC['_parent'].controls['password'].value;
     confirmPassword = AC.value ; // to get value in input tag
-    debugger
       if(password != confirmPassword) {
         console.log('false');
         return { 'noPasswordMatch': true };

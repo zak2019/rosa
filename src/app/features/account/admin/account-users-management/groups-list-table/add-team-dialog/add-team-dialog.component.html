@@ -1,0 +1,16 @@
+<mat-card-content>
+  <mat-card-title>Add New Team</mat-card-title>
+  <mat-card-subtitle>Fill team data.</mat-card-subtitle>
+  <form [formGroup]="newTeamFormGroup" >
+    <mat-form-field>
+      <input matInput placeholder="Team name" formControlName="teamName">
+    </mat-form-field>
+  </form>
+</mat-card-content>
+
+<div mat-dialog-actions class="floatRight">
+  <button mat-raised-button (click)="onCloseClick()">Close</button>
+  <button mat-raised-button color="primary"
+          [disabled]="!newTeamFormGroup.controls.teamName.untouched && !newTeamFormGroup.controls.teamName.valid"
+          (click)="onAddClick()">Add</button>
+</div>

@@ -1,0 +1,21 @@
+<div *ngIf="!simpleTimer" class="countdown">
+  <div *ngFor="let time of display; let i = index" class="measurements {{time}}">
+    <mat-progress-spinner
+      diameter="40"
+      [color]="colors[i]"
+      [mode]="'determinate'"
+      [value]="displayNumbers[i]/baseValue[i] * 100">
+    </mat-progress-spinner>
+
+      <div class="spinner-value">{{displayNumbers[i]}}</div>
+      <div class="spinner-text">{{time}}</div>
+
+  </div>
+</div>
+
+<div *ngIf="simpleTimer" class="simple-countdown">
+  <div *ngFor="let time of display; let i = index">
+      {{ (showZero && displayNumbers[i] < 10) ? '0' + displayNumbers[i].trim() : displayNumbers[i]}}
+    <span *ngIf="display[i+1]" class="divider"> : </span>
+  </div>
+</div>

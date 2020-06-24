@@ -1,0 +1,18 @@
+<mat-form-field class="chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let assoc of associations" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(assoc)">
+      {{assoc}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Add users..."
+           [matChipInputFor]="chipList"
+           [formControl]="myControl"
+           [matAutocomplete]="auto"/>
+  </mat-chip-list>
+</mat-form-field>
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let option of filteredOptions | async"
+              [value]="option.name"
+              (onSelectionChange)="add(option)">{{option.invitedUser.email}} - {{option.invitedUser.username}}</mat-option>
+</mat-autocomplete>

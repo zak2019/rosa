@@ -1,0 +1,59 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Stepper</mat-card-title>
+        <mat-card-subtitle>Check the </mat-card-subtitle>
+        <mat-horizontal-stepper [linear]="isLinear">
+          <mat-step [stepControl]="eventDataForm">
+            <form [formGroup]="eventDataForm">
+              <ng-template matStepLabel>Fill the event informations</ng-template>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Event description" formControlName="name">
+                <!-- error-->
+                <mat-error *ngIf="!eventDataForm.controls.name.untouched && !eventDataForm.controls.name.valid">
+                  name must be at least <strong>3</strong> characters
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput [ngxMatDatetimePicker]="picker"
+                       placeholder="Choose a date"
+                       formControlName="eventDate"
+                       (focus)="picker.open()"
+                       [min]="minDate" [max]="maxDate" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners"
+                                         [stepHour]="stepHour" [stepMinute]="stepMinute">
+                </ngx-mat-datetime-picker>
+              </mat-form-field>
+              <!--<add-users-to-event [accountId]="accountId"></add-users-to-event>-->
+              <div>
+                <button mat-raised-button color="warn" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="invitedUserDataForm">
+            <form [formGroup]="invitedUserDataForm">
+              <ng-template matStepLabel>Invite one or many users to the event</ng-template>
+             <add-users-to-event [invitedUserDataForm]="invitedUserDataForm"
+                                 [accountId]="accountId">
+             </add-users-to-event>
+              <div>
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <button mat-raised-button color="warn" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+              <button mat-raised-button (click)="onSubmit()" color="accent" matStepperNext>Sign Up</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

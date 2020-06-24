@@ -1,0 +1,23 @@
+<div *ngIf="page"  class="pagination-style" fxLayout="row" fxLayoutAlign="end start">
+  <span class="right-margin">Items per page:</span>
+  <div class="input-option right-margin">
+      <mat-select [ngModel]="pageSizeOptions[0]">
+        <mat-option *ngFor="let size of pageSizeOptions" [value]="size" (click)="updatePageSize(size)">
+          {{size}}
+        </mat-option>
+      </mat-select>
+  </div>
+  <span>
+    Shows {{page.actualPage + 1}} of {{page.totalPages}}
+  </span>
+  <a [routerLink]=""
+     class="btn btn-outline" [ngClass]="{'disabled': page.first }"
+     (click)="previousPage()">
+    <i class="material-icons">chevron_left</i>
+  </a>
+  <a [routerLink]=""
+     class="btn btn-outline" [ngClass]="{'disabled': page.last }"
+     (click)="nextPage()">
+    <i class="material-icons">chevron_right</i>
+  </a>
+</div>

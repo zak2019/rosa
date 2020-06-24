@@ -1,0 +1,51 @@
+<mat-toolbar class="single-row-adapter">
+  <div class="header">
+    <div class="header-left">
+      <ul>
+        <li [routerLink]="'/home'">
+          <img class="logo" src="assets/images/logo-light-icon.png">
+          <img class="logo" src="assets/images/logo-light-text.png">
+        </li>
+        <li class="clickable" (click)="toggleMenu()" value="sidebarclosed" *ngIf="!hideMenuIcon">
+          <mat-icon>menu</mat-icon>
+        </li>
+      </ul>
+    </div>
+    <div class="header-right">
+      <ul>
+        <li *ngIf="isLoggedIn" class="li-border-left">
+          <mat-icon>notification_important</mat-icon>
+        </li>
+        <li *ngIf="isLoggedIn" class="li-border-left">
+          <mat-icon>message</mat-icon>
+        </li>
+        <li *ngIf="!isLoggedIn" [routerLink]="'/register'" class="li-border-left text">
+          Sign Up
+        </li>
+        <li *ngIf="!isLoggedIn" [routerLink]="'/login'" class="li-border-left text">
+          Login
+        </li>
+        <li *ngIf="isLoggedIn && showAdminBoard" [routerLink]="['/account', accountId, 'admin']" class="li-border-left text">
+          Admin
+        </li>
+        <li *ngIf="isLoggedIn" [matMenuTriggerFor]="profile" class="li-border-left">
+          <img src="assets/images/user.png" alt="user" class="profile-pic">
+          <mat-menu #profile="matMenu">
+            <button mat-menu-item [routerLink]="['/profile', userId]">
+              <mat-icon>account_box</mat-icon>
+              Profile
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              Disable notifications
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              Sign Out
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </div>
+</mat-toolbar>

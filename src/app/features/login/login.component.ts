@@ -4,6 +4,8 @@ import {TokenStorageService} from '../../core/services/token-storage.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../core/validators/validation.service';
 import {Router} from '@angular/router';
+import {UsersAssociationService} from "../../core/services/users-association.service";
+import {RoleService} from "../../core/services/role.service";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
-              private router: Router) {
+              private usersAssociationService: UsersAssociationService,
+              private router: Router,
+              private roleService: RoleService) {
   }
 
   ngOnInit() {
@@ -32,10 +36,10 @@ export class LoginComponent implements OnInit {
         ValidationService.passwordValidator
       ])
     });
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
+    // if (this.tokenStorage.getToken()) {
+    //   this.isLoggedIn = true;
+    //   this.roles = this.tokenStorage.getUser().roles;
+    // }
   }
 
   onSubmit() {
@@ -44,7 +48,18 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
         this.authService.updateUserState(true);
-        this.router.navigate(['/home']);
+
+        this.usersAssociationService.getUsersAssociationByInvitedUserId(data.userId)
+          .subscribe(value => {
+            this.roleService.manageUserAccountsRoles(value);
+            if(value && value.length > 1) {
+              this.router.navigate(['/accounts-list']);
+            } else if(value && value.length === 1) {
+              let account = value[0].account;
+              this.router.navigate(['/account', account.accountId]);
+            }
+          });
+       // this.router.navigate(['/home']);
       },
       err => {
         this.errorMessage = err.error.message;

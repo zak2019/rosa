@@ -1,0 +1,27 @@
+<mat-card-content>
+  <mat-card-title>Attach users to team</mat-card-title>
+  <mat-card-subtitle>Fill one or many users</mat-card-subtitle>
+  <mat-form-field class="chip-list">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let assoc of associations" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(assoc)">
+        {{assoc}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Add users..."
+             [matChipInputFor]="chipList"
+             [formControl]="myControl"
+             [matAutocomplete]="auto"/>
+    </mat-chip-list>
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async"
+                [value]="option.name"
+                (onSelectionChange)="add(option)">{{option.invitedUser.email}} - {{option.invitedUser.username}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-card-content>
+<div mat-dialog-actions class="floatRight">
+  <button mat-raised-button (click)="onCloseClick()">Close</button>
+  <button mat-raised-button color="primary" [disabled]="associations.length === 0" (click)="onAddClick()">Add</button>
+</div>

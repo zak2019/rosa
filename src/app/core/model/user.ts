@@ -1,7 +1,14 @@
+import {Role} from "./role";
+
 export class User {
-  id: string;
   userId: string;
   username: string;
   email: string;
+  roles: Role[];
+  isEnabled: boolean;
+  creationDate: Date;
 
+  constructor(userId: string) {
+    this.userId = userId;
+  }
 }

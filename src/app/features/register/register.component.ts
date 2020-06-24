@@ -10,7 +10,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+
+  isLinear = true;
+  userDataForm: FormGroup;
+  accountDataForm: FormGroup;
+
+
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
@@ -21,7 +26,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
+    this.prepareUserDataFormGroup();
+    this.prepareAccountDataFormGroup();
+  }
+
+  private prepareUserDataFormGroup() {
+    this.userDataForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
@@ -38,8 +48,21 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  private prepareAccountDataFormGroup() {
+    this.accountDataForm = new FormGroup({
+      accountName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+    });
+  }
+
   onSubmit() {
-    this.authService.register(this.registerForm.value).subscribe(
+    const registerData = {
+      user: this.userDataForm.value,
+      account: this.accountDataForm.value
+    };
+    this.authService.register(registerData).subscribe(
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;

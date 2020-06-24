@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-content class="publication-information-content">
+    <div class="d-flex flex-wrap">
+      <div>
+        <mat-card-title>{{event.name}}</mat-card-title>
+        <mat-card-subtitle>PI 10 sprint 5</mat-card-subtitle>
+      </div>
+      <div class="ml-auto">
+        <ul class="list-inline">
+          <li>
+            <mat-card-subtitle>{{dateDifferenceLabel ? dateDifferenceLabel : 'Now'}}</mat-card-subtitle>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-card-content>
+  <hr>
+  <mat-card-content class="publication-action-content">
+    <div class="action-row">
+      <div class="floatLeft">
+        <ul class="list-inline text-left">
+          <li>
+            <button mat-icon-button>
+              <img src="assets/icons/weather/sunnyClear.png" width="30" alt="sun" class="img-circle">
+            </button>
+          </li>
+          <li>
+            <button mat-icon-button>
+              <img src="assets/icons/weather/sunCloud.png" width="30" alt="sun + cloud" class="img-circle">
+            </button>
+          </li>
+          <li>
+            <button mat-icon-button>
+              <img src="assets/icons/weather/rainy.png" width="30" alt="rainy" class="img-circle">
+            </button>
+          </li>
+          <li>
+            <button mat-icon-button>
+              <img src="assets/icons/weather/storm.png" width="30" alt="storm" class="img-circle">
+            </button>
+          </li>
+          <li>
+            10
+          </li>
+        </ul>
+      </div>
+      <div class="floatRight">
+        <ul class="list-inline text-right">
+          <button mat-icon-button>5</button>
+          <li>
+            <button mat-icon-button>
+              <img src="assets/icons/agile/postIt.png" width="30" alt="storm" class="img-circle">
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

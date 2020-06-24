@@ -1,0 +1,10 @@
+<mat-card class="oh text-center little-profile">
+  <img mat-card-image src="assets/images/meeting.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <div class="pro-img">
+      <img src="assets/images/user.png" width="100" alt="user" class="img-circle">
+    </div>
+    <h3 class="m-b-0 clickable" [routerLink]="['/profile', userId]">{{username}}</h3>
+    <h6 class="m-t-0 ">Java/Jee &amp; angular 8 Developer</h6>
+  </mat-card-content>
+</mat-card>

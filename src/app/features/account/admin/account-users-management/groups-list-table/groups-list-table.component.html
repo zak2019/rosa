@@ -1,0 +1,36 @@
+<button mat-raised-button color="primary" (click)="openDialog()" class="floatRight">Add new team</button>
+<div class="table100">
+  <table>
+    <thead>
+    <tr class="table100-head">
+      <th fxFlex="40%" class="p-t-25">Team name</th>
+      <th fxFlex="30%" class="p-t-25">Creation date</th>
+      <th fxFlex="24%" class="p-t-25">Members number</th>
+      <th fxFlex="6%" class="p-t-25">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let element of data; let index = index">
+      <td fxFlex="40%" class="p-t-15" (click)="rowClicked(element)">{{element.teamName}}</td>
+      <td fxFlex="30%" class="p-t-15" (click)="rowClicked(element)">{{element.creationDate | date}}</td>
+      <td fxFlex="24%" class="p-t-15" (click)="rowClicked(element)">
+        {{element.linkedUsers?.length ? element.linkedUsers?.length : '0'}}</td>
+      <td fxFlex="6%">
+        <button mat-icon-button [matMenuTriggerFor]="menu4">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu4="matMenu">
+          <button mat-menu-item (click)="openLinkUsersToTeamDialog(element, index)">
+            <mat-icon>voicemail</mat-icon>
+            <span>Attach users</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

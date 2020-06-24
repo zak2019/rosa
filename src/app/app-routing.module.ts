@@ -1,26 +1,36 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
 import {RegisterComponent} from './features/register/register.component';
 import {LoginComponent} from './features/login/login.component';
-import {HomeComponent} from './features/home/home.component';
-import {UserProfileComponent} from './features/profile/user-profile.component';
-import {AuthGuardService} from '../@shared/guards/auth-guard.service';
-import {NotAuthGuardService} from '../@shared/guards/not-auth-guard.service';
-import {AdminGuardService} from '../@shared/guards/admin-guard.service';
-import {AdminComponent} from './features/admin/admin.component';
+import {AccountsListComponent} from "./features/acounts-list/accounts-list.component";
+import {ErrorPageComponent} from "./features/error-page/error-page.component";
+import {AuthGuardService} from "../@shared/guards/auth-guard.service";
+import {NotAuthGuardService} from "../@shared/guards/not-auth-guard.service";
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: '', component: AccountsListComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent, canActivate: [NotAuthGuardService]},
   {path: 'register', component: RegisterComponent, canActivate: [NotAuthGuardService]},
-  {path: 'profile/:userId', component: UserProfileComponent, canActivate: [AuthGuardService]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService, AdminGuardService]},
-  {path: '**', redirectTo: 'home', pathMatch: 'full'}
+  {path: 'accounts-list', component: AccountsListComponent, canActivate: [AuthGuardService]},
+  {
+    path: 'account/:accountId',
+    loadChildren: './features/account/account.module#AccountModule', data: {preload: true},
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/:userId',
+    loadChildren: './features/profile/user-profile.module#UserProfileModule', data: {preload: true},
+    canActivate: [AuthGuardService]
+  },
+  {path: '**', component: ErrorPageComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      preloadingStrategy: PreloadAllModules
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

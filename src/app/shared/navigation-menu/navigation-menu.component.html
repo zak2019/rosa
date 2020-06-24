@@ -1,0 +1,16 @@
+<mat-nav-list appAccordion>
+  <div *ngFor="let menuItem of menuSections; let i = index">
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+      <a appAccordionToggle [routerLink]="[menuItem.link]">
+        <mat-icon>{{ menuItem.icon }}</mat-icon>
+        <span>{{ menuItem.title }}</span>
+        <span fxFlex></span>
+      </a>
+    </mat-list-item>
+    <div class="submenu" *ngIf="menuItem.childSection.length > 0  && menuSections[i].selected">
+      <mat-list-item *ngFor="let subSection of menuItem.childSection; let j = index" [routerLink]="[subSection.link]">
+        <span>{{subSection.title}}</span>
+      </mat-list-item>
+    </div>
+  </div>
+</mat-nav-list>

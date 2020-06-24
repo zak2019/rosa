@@ -1,0 +1,81 @@
+.single-row-adapter {
+  padding: 0px;
+  height: 30px;
+}
+.header {
+  overflow: hidden;
+  background-color: #1e88e5;
+  padding: 0 10px 5px 0;
+  height: 36px;
+  vertical-align: middle;
+  box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
+.header li {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  height: 36px;
+}
+
+.li-border-left {
+  border-left: 1px solid #1f84bf;
+}
+
+.li-border-right {
+  border-right: 1px solid #1f84bf;
+}
+
+.logo {
+  height: 24px;
+}
+
+.header li:hover {
+  background-color: #05535a;
+  color: black;
+}
+
+.header li.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+  margin-right: 15px;
+}
+
+.header-left {
+  float: left;
+  margin-left: -35px;
+}
+
+.profile-pic {
+  width: 25px;
+  height: 25px;
+  clip-path: ellipse(50% 50%);
+  vertical-align: middle;
+}
+
+ul {
+  margin-top: 0px;
+  li{
+    display:inline;
+  }
+}
+
+img {
+  margin-top: -15px;
+}
+li .mat-icon {
+  margin-top: -3px;
+}
+.text {
+  padding-top: 5px !important;
+}
