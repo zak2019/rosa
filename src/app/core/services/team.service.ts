@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Team} from "../model/Team";
+import {Account} from "../model/Account";
+import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +15,14 @@ const API_URL = 'http://localhost:8080/v1/team';
 })
 export class TeamService {
 
+  private currentTeams = new BehaviorSubject<Team[]>(null);
+  public currentTeamsAsObs$ = this.currentTeams.asObservable();
+
   constructor(private http: HttpClient) {
+  }
+
+  setCurrentTeams(teams: Team[]) {
+    this.currentTeams.next(teams);
   }
 
   createNewTeam(accountId: string, newTeam: Team): Observable<any> {

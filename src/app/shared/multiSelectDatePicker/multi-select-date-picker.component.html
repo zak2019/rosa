@@ -1,0 +1,25 @@
+<mat-form-field [formGroup]="group">
+
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let eventDate of control.value" [matMenuTriggerFor]="appMenu">
+      {{eventDate | date}}
+    </mat-chip>
+    <input matInput
+           [matChipInputFor]="chipList"
+           [placeholder]="placeholder"
+           [matMenuTriggerFor]="appMenu" readonly>
+  </mat-chip-list>
+
+
+  <mat-menu #appMenu="matMenu" class="calendar-container">
+    <div (click)="$event.stopPropagation()">
+      <mat-calendar #calendar
+                    (selectedChange)="select($event,calendar)"
+                    [dateClass]="isSelected">
+      </mat-calendar>
+    </div>
+    <button mat-button mat-stroked-button class="floatRight"  (click)="sendDates()">
+      <span class="material-icons">done</span>
+    </button>
+  </mat-menu>
+</mat-form-field>

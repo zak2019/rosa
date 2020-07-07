@@ -23,6 +23,12 @@
       <li (click)="navigateToAccountAdminPage()" *ngIf="showAdminLink">
        <span class="clickable">Admin</span>
       </li>
+      <li *ngIf="showTeamLink">
+        >
+      </li>
+      <li *ngIf="showTeamLink">
+        <span class="clickable">{{currentTeam?.teamName ? currentTeam?.teamName : 'Team'}}</span>
+      </li>
     </ul>
   </div>
 </div>

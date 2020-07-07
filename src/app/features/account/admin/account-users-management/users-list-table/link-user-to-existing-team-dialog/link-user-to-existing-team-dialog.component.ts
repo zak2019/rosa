@@ -25,7 +25,6 @@ export class LinkUserToExistingTeamDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.teamService.getTeamsByAccountId(this.data.accountId)
       .pipe(takeUntil(this.ngUnSubscribe))
       .subscribe(teams => this.teamList = teams);

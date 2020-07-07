@@ -25,8 +25,6 @@ export class AccountComponent implements OnInit, OnDestroy {
       .subscribe(value => {
         this.accountService.setCurrentAccount(value);
       });
-    console.log('this.route.snapshot');
-    console.log(this.route.snapshot);
   }
 
 

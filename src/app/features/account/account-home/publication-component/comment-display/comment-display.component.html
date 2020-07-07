@@ -1,0 +1,35 @@
+<div class="item" *ngFor="let eventComment of event?.eventCommentSet; let index = index">
+  <div class="image">
+    <div>
+      <img *ngIf="eventComment.red" src="../assets/icons/post-it/red-post-it1.png" alt="red post-it"/>
+      <img *ngIf="eventComment.blue" src="../assets/icons/post-it/blue-post-it.jpg" alt="red post-it"/>
+      <img *ngIf="eventComment.yellow" src="../assets/icons/post-it/yellow-post-it.png" alt="red post-it"/>
+      <img *ngIf="eventComment.green" src="../assets/icons/post-it/green-post-it.jpg" alt="red post-it"/>
+      <span>
+      {{eventComment.creationDate | date}}
+      </span>
+    </div>
+  </div>
+  <div class="details">
+    <div>
+      <p> {{eventComment.comment}} </p>
+      <!--<button mat-raised-button color="primary" (click)="confirmDeleteComment(eventComment, index)">Delete</button>-->
+    </div>
+  </div>
+  <div class="comment-action">
+    <button mat-icon-button [matMenuTriggerFor]="menu4">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu4="matMenu">
+      <button mat-menu-item (click)="confirmDeleteComment(eventComment, index)">
+        <mat-icon>voicemail</mat-icon>
+        <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Signaler</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+

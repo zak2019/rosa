@@ -23,6 +23,7 @@ import {GroupsListTableComponent} from "./account-users-management/groups-list-t
 import {AddTeamDialogComponent} from "./account-users-management/groups-list-table/add-team-dialog/add-team-dialog.component";
 import {LinkUsersToTeamDialogComponent} from "./account-users-management/groups-list-table/link-users-to-team-dialog/link-users-to-team-dialog.component";
 import {LinkUserToExistingTeamDialogComponent} from "./account-users-management/users-list-table/link-user-to-existing-team-dialog/link-user-to-existing-team-dialog.component";
+import {MultiSelectDatePickerModule} from "../../../shared/multiSelectDatePicker/multi-select-date-picker.module";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {LinkUserToExistingTeamDialogComponent} from "./account-users-management/
     RouterModule,
     FlexLayoutModule,
     NavigationMenuModule,
-    MatDialogModule
+    MultiSelectDatePickerModule,
+    MatDialogModule,
   ],
   exports: [
     AdminComponent

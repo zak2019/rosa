@@ -4,12 +4,16 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
 import {MaterialModule} from "../core/modules/material.module";
+import {AccordionAnchorDirective, AccordionDirective, AccordionLinkDirective} from "./accordion";
 
 @NgModule({
   declarations: [
     // RadioButtonComponent,
     ConfirmationDialogComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AccordionAnchorDirective,
+    AccordionLinkDirective,
+    AccordionDirective
   ],
   imports: [
     CommonModule,
@@ -19,7 +23,10 @@ import {MaterialModule} from "../core/modules/material.module";
   exports: [
     // HeaderModule,
     ConfirmationDialogComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AccordionAnchorDirective,
+    AccordionLinkDirective,
+    AccordionDirective
   ],
   providers: [],
   entryComponents: []

@@ -1,0 +1,10 @@
+<mat-card class="oh text-center">
+  <mat-card-content>
+    <button mat-raised-button color="primary" [routerLink]="['/account', account?.accountId]"
+            style="width: 100%; margin-bottom: 12px;">{{account?.accountName}}</button>
+    <div *ngFor="let team of teamList">
+      <button mat-raised-button color="primary" [routerLink]="['/account', account?.accountId, 'team', team.teamId]"
+              style="width: 100%; margin-bottom: 12px;">{{team.teamName}}</button>
+    </div>
+  </mat-card-content>
+</mat-card>

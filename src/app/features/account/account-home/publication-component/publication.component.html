@@ -3,6 +3,7 @@
     <div class="d-flex flex-wrap">
       <div>
         <mat-card-title>{{event.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="event.team">{{event.team.teamName}}</mat-card-subtitle>
         <mat-card-subtitle>PI 10 sprint 5</mat-card-subtitle>
       </div>
       <div class="ml-auto">
@@ -20,40 +21,149 @@
       <div class="floatLeft">
         <ul class="list-inline text-left">
           <li>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="createSunnyClearEventWeather()"
+                    [ngClass]="{'weather-icon-selected': sunnyClear }">
               <img src="assets/icons/weather/sunnyClear.png" width="30" alt="sun" class="img-circle">
             </button>
           </li>
           <li>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="createSunnyCloudEventWeather()"
+                    [ngClass]="{'weather-icon-selected': sunnyCloud }">
               <img src="assets/icons/weather/sunCloud.png" width="30" alt="sun + cloud" class="img-circle">
             </button>
           </li>
           <li>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="createRainyEventWeather()"
+                    [ngClass]="{'weather-icon-selected': rainy }">
               <img src="assets/icons/weather/rainy.png" width="30" alt="rainy" class="img-circle">
             </button>
           </li>
           <li>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="createStormEventWeather()"
+                    [ngClass]="{'weather-icon-selected': storm }">
               <img src="assets/icons/weather/storm.png" width="30" alt="storm" class="img-circle">
             </button>
           </li>
           <li>
-            10
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              {{this.event?.eventWeatherSet?.length ? this.event?.eventWeatherSet?.length : 0}}
+            </button>
           </li>
+          <mat-menu #menu="matMenu">
+            <div class="popup-content">
+              <table>
+                <tr>
+                  <td class="border-right">
+                    <div>
+                      <img src="assets/icons/weather/sunnyClear.png" width="30" alt="sun + cloud" class="img-circle">
+                    </div>
+                    <div>
+                      {{sunnyClearWeatherNumber}}
+                    </div>
+                  </td>
+                  <td class="border-bottom">
+                    <div>
+                      <img src="assets/icons/weather/sunCloud.png" width="30" alt="sun + cloud" class="img-circle">
+                    </div>
+                    <div>
+                      {{sunnyCloudWeatherNumber}}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-top">
+                    <div>
+                      <img src="assets/icons/weather/rainy.png" width="30" alt="sun + cloud" class="img-circle">
+                    </div>
+                    <div> {{rainyWeatherNumber}}
+                    </div>
+                  </td>
+                  <td class="border-left">
+                    <div>
+                      <img src="assets/icons/weather/storm.png" width="30" alt="sun + cloud" class="img-circle">
+                    </div>
+                    <div>
+                      {{stormWeatherNumber}}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </mat-menu>
         </ul>
       </div>
       <div class="floatRight">
         <ul class="list-inline text-right">
-          <button mat-icon-button>5</button>
+          <button mat-icon-button (click)="showComments = !showComments">
+            {{this.event?.eventCommentSet?.length ?
+            this.event.eventCommentSet.length :
+            0}}
+          </button>
           <li>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="showPostItComment()">
               <img src="assets/icons/agile/postIt.png" width="30" alt="storm" class="img-circle">
             </button>
           </li>
         </ul>
       </div>
     </div>
+  </mat-card-content>
+  <hr *ngIf="showPostItCard">
+  <mat-card-content class="text-center post-it-card" *ngIf="showPostItCard">
+  <span (click)="showAndSetGreenCommentCard()">
+    <img src="../assets/icons/post-it/green-post-it.jpg" alt="user" class="img-style"></span>
+    <span (click)="showAndSetYellowCommentCard()">
+    <img src="../assets/icons/post-it/yellow-post-it.png" alt="user" class="img-style"></span>
+    <span (click)="showAndSetBlueCommentCard()">
+    <img src="../assets/icons/post-it/blue-post-it.jpg" alt="user" class="img-style"></span>
+    <span (click)="showAndSetRedCommentCard()">
+    <img src="../assets/icons/post-it/red-post-it1.png" alt="user" class="img-style"></span>
+  </mat-card-content>
+  <hr>
+  <mat-card-content class="comment-card">
+    <div class="item" *ngIf="!showPostItCard && showInputTextCard">
+      <div class="image">
+        <div>
+          <img *ngIf="commentFormGroup.controls['blue'].value"
+               src="../assets/icons/post-it/blue-post-it.jpg"
+               alt="blue-post-it"
+               class="img-circle">
+          <img *ngIf="commentFormGroup.controls['red'].value"
+               src="../assets/icons/post-it/red-post-it1.png"
+               alt="red-post-it"
+               class="img-circle">
+          <img *ngIf="commentFormGroup.controls['green'].value"
+               src="../assets/icons/post-it/green-post-it.jpg"
+               alt="green-post-it"
+               class="img-circle">
+          <img *ngIf="commentFormGroup.controls['yellow'].value"
+               src="../assets/icons/post-it/yellow-post-it.png"
+               alt="yellow-post-it"
+               class="img-circle">
+        </div>
+      </div>
+      <div class="details">
+        <div>
+          <form [formGroup]="commentFormGroup">
+            <mat-form-field>
+              <textarea matInput placeholder="add your comment"
+                        formControlName="comment"
+                        class="comment-textArea"
+                        (keyup)="autogrow(event?.eventId)"
+                        id="{{event?.eventId}}"></textarea>
+            </mat-form-field>
+            <button *ngIf="enableAddCommentButton"
+                    mat-raised-button
+                    [ngClass]="
+                    {'greenButton': commentFormGroup.controls['green'].value,
+                    'redButton': commentFormGroup.controls['red'].value,
+                    'yellowButton': commentFormGroup.controls['yellow'].value,
+                    'blueButton': commentFormGroup.controls['blue'].value }"
+                    (click)="addComment()">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <app-comment-display *ngIf="showComments" [userId]="userId" [event]="event"></app-comment-display>
   </mat-card-content>
 </mat-card>

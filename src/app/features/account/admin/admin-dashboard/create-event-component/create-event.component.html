@@ -3,12 +3,31 @@
   <div fxFlex.gt-sm="100%" fxFlex="100">
     <mat-card>
       <mat-card-content>
-        <mat-card-title>Stepper</mat-card-title>
-        <mat-card-subtitle>Check the </mat-card-subtitle>
+        <mat-card-title>Create Event</mat-card-title>
+        <section class="example-section">
+          <form [formGroup]="radioButtonFormGroup">
+            <label class="m-l-30">Choose the event Types :</label>
+            <mat-radio-group formControlName="eventCategory">
+              <mat-radio-button class="m-l-30 m-r-20" color="accent" value="project">
+                Project event
+              </mat-radio-button>
+              <mat-radio-button class="m-l-30 m-r-20" color="primary" value="team">
+                Team event
+              </mat-radio-button>
+            </mat-radio-group>
+          </form>
+        </section>
+        <br/>
+        <section class="example-section">
+          <form [formGroup]="slideToggleFormGroup">
+            <label class="m-l-30">Repetitive event :</label>
+            <mat-slide-toggle class="m-l-30" formControlName="eventRecurrence"></mat-slide-toggle>
+          </form>
+        </section>
         <mat-horizontal-stepper [linear]="isLinear">
-          <mat-step [stepControl]="eventDataForm">
-            <form [formGroup]="eventDataForm">
-              <ng-template matStepLabel>Fill the event informations</ng-template>
+          <mat-step [stepControl]="repetitiveEvent ? eventHourAndDatesForm : eventDataForm">
+            <ng-template matStepLabel>Fill the event informations</ng-template>
+            <form [formGroup]="eventDataForm" *ngIf="!repetitiveEvent">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Event description" formControlName="name">
                 <!-- error-->
@@ -18,7 +37,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <input matInput [ngxMatDatetimePicker]="picker"
-                       placeholder="Choose a date"
+                       placeholder="Choose date and time"
                        formControlName="eventDate"
                        (focus)="picker.open()"
                        [min]="minDate" [max]="maxDate" readonly>
@@ -27,8 +46,54 @@
                                          [stepHour]="stepHour" [stepMinute]="stepMinute">
                 </ngx-mat-datetime-picker>
               </mat-form-field>
-              <!--<add-users-to-event [accountId]="accountId"></add-users-to-event>-->
               <div>
+                <button mat-raised-button color="warn" matStepperNext>Next</button>
+              </div>
+            </form>
+            <form [formGroup]="eventHourAndDatesForm" *ngIf="eventHourAndDatesForm && repetitiveEvent">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Event description" formControlName="name">
+                <!-- error-->
+                <mat-error *ngIf="!eventDataForm.controls.name.untouched && !eventDataForm.controls.name.valid">
+                  name must be at least <strong>3</strong> characters
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput
+                       [format]="24"
+                       formControlName="eventHour"
+                       [ngxTimepicker]="defaultValue"
+                       placeholder="Choose time" readonly>
+                <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+              </mat-form-field>
+
+              <app-multi-select-date-picker class="floatRight multiSelectDate"
+                                            [placeholder]="'Choose dates'"
+                                            [group]="eventHourAndDatesForm"
+                                            [control]="eventHourAndDatesForm.controls['eventDates']"
+                                            (dateList)="setDateList($event)">
+              </app-multi-select-date-picker>
+
+              <div>
+                <button mat-raised-button color="warn" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="teamDataForm" *ngIf="showTeamStep">
+            <form [formGroup]="teamDataForm">
+              <ng-template matStepLabel>Choose the concerned team</ng-template>
+              <mat-form-field>
+                <mat-label>Select the team</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let team of teamList"
+                              [value]="team.teamId"
+                              (onSelectionChange)="setSelectedTeam(team)">
+                    {{team.teamName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
                 <button mat-raised-button color="warn" matStepperNext>Next</button>
               </div>
             </form>
@@ -36,9 +101,9 @@
           <mat-step [stepControl]="invitedUserDataForm">
             <form [formGroup]="invitedUserDataForm">
               <ng-template matStepLabel>Invite one or many users to the event</ng-template>
-             <add-users-to-event [invitedUserDataForm]="invitedUserDataForm"
-                                 [accountId]="accountId">
-             </add-users-to-event>
+              <add-users-to-event [invitedUserDataForm]="invitedUserDataForm"
+                                  [accountId]="accountId">
+              </add-users-to-event>
               <div>
                 <button mat-raised-button color="accent" matStepperPrevious>Back</button>
                 <button mat-raised-button color="warn" matStepperNext>Next</button>

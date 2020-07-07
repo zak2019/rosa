@@ -7,10 +7,16 @@ import {AccountReportsComponent} from './admin/account-reports/account-reports.c
 import {AccountUsersManagementComponent} from "./admin/account-users-management/account-users-management.component";
 import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
 import {AccountHomeComponent} from "./account-home/account-home.component";
+import {ProjectDashboardComponent} from "./account-home/project-dashbord/project-dashboard.component";
+import {TeamDashboardComponent} from "./account-home/team-dashbord/team-dashboard.component";
 
 const routes: Routes = [
   {path: '', component: AccountComponent, children: [
-      {path: '', component: AccountHomeComponent},
+      {path: '', component: AccountHomeComponent,
+      children: [
+        {path: '', component: ProjectDashboardComponent},
+        {path: 'team/:teamId', component: TeamDashboardComponent}
+      ]},
       {path: 'admin', component: AdminComponent, canActivate: [AdminGuardService],
         children: [
           {path: 'dashboard', component: AdminDashboardComponent},

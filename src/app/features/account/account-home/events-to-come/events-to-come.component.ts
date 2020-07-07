@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
 import {takeUntil} from "rxjs/operators";
 import {EventService} from "../../../../core/services/event.service";
@@ -10,30 +10,11 @@ import {Event} from "../../../../core/model/event";
   templateUrl: './events-to-come.component.html',
   styleUrls: ['./events-to-come.component.scss']
 })
-export class EventsToComeComponent implements OnInit, OnDestroy {
-  messages: any[] = [
-    {
-      from: 'Nirav joshi (nbj@gmail.com)',
-      image: 'assets/images/user.png',
-      subject: 'Material angular',
-      content: 'This is the material angular template'
-    },
-    {
-      from: 'Sunil joshi (sbj@gmail.com)',
-      image: 'assets/images/user.png',
-      subject: 'Wrappixel',
-      content: 'We have wrappixel launched'
-    },
-    {
-      from: 'Vishal Bhatt (bht@gmail.com)',
-      image: 'assets/images/user.png',
-      subject: 'Task list',
-      content: 'This is the latest task hasbeen done'
-    }
-  ];
+export class EventsToComeComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() accountId: string;
   @Input() userId: string;
+  @Input() teamId: string;
   eventsToComeList;
   nextEvent;
   private ngUnSubscribe: Subject<void> = new Subject<void>();
@@ -46,7 +27,23 @@ export class EventsToComeComponent implements OnInit, OnDestroy {
     this.getEventsToCome();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.teamId &&
+      changes.teamId.previousValue &&
+      changes.teamId.previousValue != changes.teamId.currentValue) {
+      this.getEventsToCome();
+    }
+  }
+
   private getEventsToCome() {
+    if (this.teamId) {
+      this.getEventsToComeForTeam();
+    } else {
+      this.getEventsToComeForProject();
+    }
+  }
+
+  private getEventsToComeForProject() {
     this.eventsToComeList = [];
     this.nextEvent = null;
     this.page.pageable.pageSize = 4;
@@ -62,10 +59,33 @@ export class EventsToComeComponent implements OnInit, OnDestroy {
       });
   }
 
+  private getEventsToComeForTeam() {
+    this.eventsToComeList = [];
+    this.nextEvent = null;
+    this.page.pageable.pageSize = 4;
+    this.eventService.getPageEventsToComeByUserIdAndAccountIdAndTeamId(
+      this.page.pageable,
+      this.userId,
+      this.accountId,
+      this.teamId
+      )
+      .pipe(takeUntil(this.ngUnSubscribe))
+      .subscribe(page => {
+        this.page = page;
+        page.data.sort((a, b) => {
+          return <any>new Date(a.eventDate) - <any>new Date(b.eventDate);
+        }).forEach(event => this.eventsToComeList.push(event));
+        this.nextEvent = this.eventsToComeList[0];
+        this.eventsToComeList.splice(0, 1);
+      });
+  }
+
   eventReached(newEvent) {
-    console.log('event reached');
-    console.log(newEvent);
-    this.getEventsToCome();
+    if(this.teamId) {
+      this.getEventsToComeForTeam();
+    } else {
+      this.getEventsToComeForProject();
+    }
     this.eventService.setNewEvent(newEvent);
   }
 

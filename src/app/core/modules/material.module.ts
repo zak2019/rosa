@@ -33,6 +33,10 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
+import {CdkAccordionModule} from "@angular/cdk/accordion";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 @NgModule({
   imports: [
@@ -66,6 +70,10 @@ import {
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
+    CdkAccordionModule,
+    MatExpansionModule,
+    MatSlideToggleModule,
+    NgxMaterialTimepickerModule,
   ],
   exports: [
     MatProgressSpinnerModule,
@@ -96,6 +104,10 @@ import {
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
+    CdkAccordionModule,
+    MatExpansionModule,
+    MatSlideToggleModule,
+    NgxMaterialTimepickerModule,
   ],
   providers: [
     MatDatepickerModule,

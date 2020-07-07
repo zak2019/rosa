@@ -13,12 +13,20 @@ import {SharedModule} from "../../../shared/shared.module";
 import {EventsToComeComponent} from "./events-to-come/events-to-come.component";
 import {EventsToComeRowComponent} from "./events-to-come/event-to-come-row/events-to-come-row.component";
 import {CountdownModule} from "../../../shared/countDown-timer/countdown.module";
+import {ProjectDashboardComponent} from "./project-dashbord/project-dashboard.component";
+import {TeamDashboardComponent} from "./team-dashbord/team-dashboard.component";
+import {TeamsCardComponent} from "./teams-card/teams-card.component";
+import {CommentDisplayComponent} from "./publication-component/comment-display/comment-display.component";
 
 @NgModule({
   declarations: [
     AccountHomeComponent,
+    ProjectDashboardComponent,
+    TeamDashboardComponent,
     ProfileCardComponent,
+    TeamsCardComponent,
     PublicationComponent,
+    CommentDisplayComponent,
     EventsToComeComponent,
     EventsToComeRowComponent,
   ],
@@ -31,7 +39,7 @@ import {CountdownModule} from "../../../shared/countDown-timer/countdown.module"
     RouterModule,
     FlexLayoutModule,
     SharedModule,
-    CountdownModule,
+    CountdownModule
   ],
   exports: [
     AccountHomeComponent
