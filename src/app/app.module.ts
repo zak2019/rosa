@@ -15,18 +15,23 @@ import { environment } from '../environments/environment';
 import {AccountModule} from './features/account/account.module';
 import {HeaderModule} from './shared/header/header.module';
 import {BrowserModule} from '@angular/platform-browser';
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {SharedModule} from "./shared/shared.module";
 import {UserProfileModule} from "./features/profile/user-profile.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AccountsListModule} from "./features/acounts-list/accounts-list.module";
 import {ErrorPageComponent} from "./features/error-page/error-page.component";
+import {RxStompService} from "@stomp/ng2-stompjs";
+import {UserVerificationComponent} from "./features/user-verification/user-verification.component";
+import {CompleteRegistrationComponent} from "./features/complete-registration/complete-registration.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    UserVerificationComponent,
     RegisterComponent,
+    CompleteRegistrationComponent,
     ErrorPageComponent,
   ],
   imports: [
@@ -46,7 +51,7 @@ import {ErrorPageComponent} from "./features/error-page/error-page.component";
     AccountsListModule,
     AppRoutingModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, DatePipe, RxStompService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

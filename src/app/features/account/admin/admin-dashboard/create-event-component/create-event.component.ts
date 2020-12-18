@@ -68,6 +68,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
             .subscribe(teams => this.teamList = teams);
         }
       } else {
+        this.prepareTeamDataForm();
         this.showTeamStep = false;
       }
     });
@@ -128,7 +129,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
   onSubmit() {
       this.eventDataForm.addControl(
-        'associations',
+        'users',
         this.formBuilder.array(this.invitedUserDataForm.value));
       if (this.showTeamStep) {
         this.eventDataForm.addControl(
@@ -136,7 +137,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
           this.teamDataForm.controls['team']);
       }
     if (!this.repetitiveEvent) {
-      this.eventService.createEvent(this.eventDataForm.value).subscribe(
+      this.eventService.createEvent(this.accountId, this.eventDataForm.value).subscribe(
         data => {
         },
         err => {
@@ -144,7 +145,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
       );
     } else {
       this.eventDataForm.controls['name'].setValue(this.eventHourAndDatesForm.controls['name'].value);
-      this.eventService.createEvents(this.eventDataForm.value,
+      this.eventService.createEvents(this.accountId, this.eventDataForm.value,
         this.eventHourAndDatesForm.controls['eventHour'].value,
         this.eventHourAndDatesForm.controls['eventDates'].value).subscribe(
         data => {

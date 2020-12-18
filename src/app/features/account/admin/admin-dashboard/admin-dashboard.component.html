@@ -7,13 +7,15 @@
           <mat-card-title>Basic Tab</mat-card-title>
         </mat-card-content>
         <mat-tab-group>
-          <mat-tab label="Users's list">
+          <mat-tab label="Events's list">
+            <mat-card-content>
+              <app-events-list-table [accountId]="accountId"></app-events-list-table>
+            </mat-card-content>
+          </mat-tab>
+          <mat-tab label="Create Events">
             <mat-card-content>
               <app-create-event [accountId]="accountId"></app-create-event>
             </mat-card-content>
-          </mat-tab>
-          <mat-tab label="Group's list">
-            <mat-card-content>Content 2</mat-card-content>
           </mat-tab>
         </mat-tab-group>
       </mat-card>

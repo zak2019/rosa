@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm =  new FormGroup({
-      username: new FormControl('',[
+      email: new FormControl('',[
         Validators.required,
-        Validators.minLength(3)]),
+        ValidationService.emailValidator]),
       password: new FormControl('',[
         Validators.required,
         ValidationService.passwordValidator
@@ -62,9 +62,15 @@ export class LoginComponent implements OnInit {
        // this.router.navigate(['/home']);
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = this.manageErrorMessage(err.error.message);
         this.isLoginFailed = true;
       }
     );
+  }
+
+  private manageErrorMessage(msg: string) {
+    if(msg.includes('disabled')) return 'Account Disabled or not Activated yet';
+    else if (msg.includes('Bad credentials')) return 'Wrong User name or password';
+    else return 'error';
   }
 }

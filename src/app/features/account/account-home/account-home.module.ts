@@ -17,6 +17,7 @@ import {ProjectDashboardComponent} from "./project-dashbord/project-dashboard.co
 import {TeamDashboardComponent} from "./team-dashbord/team-dashboard.component";
 import {TeamsCardComponent} from "./teams-card/teams-card.component";
 import {CommentDisplayComponent} from "./publication-component/comment-display/comment-display.component";
+import {WeatherTableModule} from "../../../shared/weather-table/weather-table.module";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {CommentDisplayComponent} from "./publication-component/comment-display/c
     RouterModule,
     FlexLayoutModule,
     SharedModule,
-    CountdownModule
+    CountdownModule,
+    WeatherTableModule,
   ],
   exports: [
     AccountHomeComponent

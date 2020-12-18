@@ -11,3 +11,22 @@ export class EventWeather {
   rainy: boolean;
   storm: boolean;
 }
+
+export const defaultWeather = [
+    {
+      name: 'Sunny clear',
+      value: 0
+    },
+    {
+      name: 'Sunny cloud',
+      value: 0
+    },
+    {
+      name: 'Rainy',
+      value: 0
+    },
+    {
+      name: 'Storm',
+      value: 0
+    }
+  ];

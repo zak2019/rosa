@@ -12,8 +12,6 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {UsersAssociationService} from "../../../../../core/services/users-association.service";
 import {ConfirmationDialogComponent} from "../../../../../shared/confirmation-dialog/confirmation-dialog.component";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ValidationService} from "../../../../../core/validators/validation.service";
-import {LinkUsersToTeamDialogComponent} from "../groups-list-table/link-users-to-team-dialog/link-users-to-team-dialog.component";
 import {User} from "../../../../../core/model/user";
 import {LinkUserToExistingTeamDialogComponent} from "./link-user-to-existing-team-dialog/link-user-to-existing-team-dialog.component";
 

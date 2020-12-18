@@ -15,6 +15,11 @@ export class UsersAssociationService {
   constructor(private http: HttpClient) {
   }
 
+  getUsersAssociationByAssociationId(associationId: string): Observable<any> {
+    const url = API_URL + '/find/' + associationId;
+    return this.http.get(url, httpOptions);
+  }
+
   deleteAssociation(associationId: string): Observable<any> {
     const url = API_URL + '/delete-user-assoc/' + associationId;
     return this.http.post(url, httpOptions);
@@ -39,5 +44,4 @@ export class UsersAssociationService {
     const url = API_URL + '/delete-role-from-user-assoc/' + associationId + '/' + role;
     return this.http.post(url, httpOptions);
   }
-
 }

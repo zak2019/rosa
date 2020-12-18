@@ -4,6 +4,7 @@ import {AuthService} from './core/services/auth.service';
 import {Subject} from 'rxjs/internal/Subject';
 import {RoleService} from "./core/services/role.service";
 import {takeUntil} from "rxjs/operators";
+import {EventWebsocketService} from "./core/services/socket/event-socket/event.websocket.service";
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private tokenStorageService: TokenStorageService,
               private authService: AuthService,
-              private roleService: RoleService) {
+              private roleService: RoleService,
+              private eventWebsocketService: EventWebsocketService) {
   }
 
   ngOnInit() {
+    this.initEventWebSocket();
     if(!!this.tokenStorageService.getToken()) {
       this.authService.updateUserState(true);
       this.getUserRolesAndAssocAccounts(this.tokenStorageService.getUser().userId);
@@ -35,6 +38,15 @@ export class AppComponent implements OnInit, OnDestroy {
         this.roleService.manageUserAccountsRoles(userAccountsRoles);
       });
   }
+
+  private initEventWebSocket = () => {
+    const obs = this.eventWebsocketService.getObservable();
+
+    obs.subscribe(value => {
+      console.log('value');
+      console.log(value);
+    });
+  };
 
   ngOnDestroy () {
     this.ngUnsubscribe.next();

@@ -1,0 +1,60 @@
+<!--<mat-form-field class="input-search">-->
+  <!--<form [formGroup]="searchFormGroup">-->
+    <!--<input matInput type="text" formControlName="inputSearch" placeholder="Search by username">-->
+  <!--</form>-->
+<!--</mat-form-field>-->
+<!--<button mat-raised-button color="primary" (click)="openDialog()" class="floatRight">Add new users</button>-->
+
+
+
+<div class="table100">
+  <table>
+    <thead>
+    <tr class="table100-head">
+      <th fxFlex="30%" class="p-t-25">Username</th>
+      <th fxFlex="30%" class="p-t-25">Team</th>
+      <th fxFlex="15%" class="p-t-25">Event Date</th>
+      <th fxFlex="19%" class="p-t-25">Invited users</th>
+      <th fxFlex="6%" class="p-t-25">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let element of page.data; let index = index">
+      <td fxFlex="30%" class="p-t-15" (click)="rowClicked(element)">{{element.name}}</td>
+      <td fxFlex="30%" class="p-t-15" (click)="rowClicked(element)">
+        {{element.team?.teamName ? element.team?.teamName : element?.account?.accountName}}</td>
+      <td fxFlex="15%" class="p-t-15" (click)="rowClicked(element)">{{element.eventDate |  date:'yyyy-MM-dd HH:mm'}}</td>
+      <td fxFlex="19%" class="p-t-15" (click)="rowClicked(element)">{{element?.users?.length ? element?.users?.length : '0'}}</td>
+      <td fxFlex="6%">
+        <button mat-icon-button [matMenuTriggerFor]="menu4">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu4="matMenu">
+          <button mat-menu-item>
+            <mat-icon>voicemail</mat-icon>
+            <span>Delete</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="no-user-yet"
+   *ngIf="page &&page.data && page.data.length ===0">
+  No user found
+</p>
+
+<app-custom-pagination *ngIf="page && page.data && page.data.length > 0"
+                       [page]="page"
+                       (nextPageEvent)="getNextPage()"
+                       (previousPageEvent)="getPreviousPage()"
+                       (pageSizeEvent)="getPageInNewSize($event)">
+</app-custom-pagination>
+
+event list works

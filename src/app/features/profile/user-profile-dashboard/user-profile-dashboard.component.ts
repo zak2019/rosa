@@ -6,6 +6,7 @@ import {UserService} from "../../../core/services/user.service";
 import {takeUntil} from "rxjs/operators";
 import {UsersAssociationService} from "../../../core/services/users-association.service";
 import {UsersAssociation} from "../../../core/model/UsersAssociation";
+import {TokenStorageService} from "../../../core/services/token-storage.service";
 
 @Component({
   selector: 'app-user-profile-dashboard',
@@ -16,17 +17,20 @@ export class UserProfileDashboardComponent implements OnInit, OnDestroy {
   userDetails: User;
   userId: string;
   associatedAcounts: UsersAssociation[];
+  isConnectedUser = false;
 
   private ngUnSubscribe: Subject<void> = new Subject<void>();
 
   constructor(private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private usersAssociationService: UsersAssociationService) {
+              private usersAssociationService: UsersAssociationService,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
     this.userId = this.route.snapshot.parent.params.userId;
+    this.isConnectedUser = this.tokenStorageService.isThisConnectedUser(this.userId);
     this.getUserDetailsByUserId(this.userId);
     this.usersAssociationService
       .getUsersAssociationByInvitedUserId(this.userId)

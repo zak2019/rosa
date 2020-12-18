@@ -3,15 +3,15 @@
     <mat-card>
       <mat-card-content>
         <mat-card-title>Login</mat-card-title>
-        <mat-card-subtitle>Fill out your username and passxord </mat-card-subtitle>
+        <mat-card-subtitle>Fill out your email and passxord </mat-card-subtitle>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
       <!-- userName -->
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="UserName" formControlName="username">
+        <input matInput placeholder="EMail" formControlName="email">
         <!-- error-->
-        <mat-error *ngIf="!loginForm.controls.username.untouched && !loginForm.controls.username.valid">
-          Password must be at least <strong>3</strong> characters
+        <mat-error *ngIf="!loginForm.controls.email.untouched && !loginForm.controls.email.valid">
+          Email not valid
         </mat-error>
       </mat-form-field>
 
@@ -78,7 +78,7 @@
         role="alert"
         *ngIf="isLoginFailed"
       >
-        Login failed: {{ errorMessage }}
+        {{ errorMessage }}
       </div>
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ roles }}.

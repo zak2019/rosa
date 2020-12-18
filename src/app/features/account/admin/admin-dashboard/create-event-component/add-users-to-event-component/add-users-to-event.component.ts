@@ -6,6 +6,7 @@ import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
 import {UsersAssociationService} from "../../../../../../core/services/users-association.service";
 import {Observable} from "rxjs/internal/Observable";
 import {UsersAssociation} from "../../../../../../core/model/UsersAssociation";
+import {User} from "../../../../../../core/model/user";
 
 @Component({
   selector: 'add-users-to-event',
@@ -47,7 +48,7 @@ export class AddUsersToEventComponent implements OnInit {
     this.myControl.setValue('');
     this.searchList = this.searchList.filter(assoc => assoc.invitedUser.email != association.invitedUser.email);
     this.associations.push(association.invitedUser.email);
-    this.invitedUserDataForm.push(new FormControl(new UsersAssociation(association.associationId)));
+    this.invitedUserDataForm.push(new FormControl(new User(association.invitedUser.userId)));
   }
 
   remove(email: any): void {

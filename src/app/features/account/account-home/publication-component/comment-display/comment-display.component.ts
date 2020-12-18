@@ -18,7 +18,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class CommentDisplayComponent implements OnInit, OnDestroy {
   @Input() event: Event;
-  @Input() userId: string;
+  @Input() secretUserId: string;
   private ngUnSubscribe: Subject<void> = new Subject<void>();
 
   constructor(private dateService: DateService,
@@ -54,6 +54,8 @@ export class CommentDisplayComponent implements OnInit, OnDestroy {
       .subscribe( value => {
         this.event.eventCommentSet.splice(index, 1);
         if(value) this.openSnackBar('Comment deleted', 'OK');
+      },err => {
+        console.log(err.error.message);
       });
   }
 

@@ -65,53 +65,60 @@
           <mat-tab label="Profile">
             <mat-card-content>
               <mat-card-title>Form Basic Layouts</mat-card-title>
-              <!-- ============================================================== -->
-              <!-- column -->
-              <!-- ============================================================== -->
-              <form class="basic-form">
-                <div fxLayout="row wrap">
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <mat-form-field>
-                      <input matInput placeholder="Some text value">
-                    </mat-form-field>
-                  </div>
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <mat-form-field>
-                      <input matInput placeholder="EmailId" type="email">
-                    </mat-form-field>
-                  </div>
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <mat-form-field>
-                      <input matInput placeholder="Password" type="password">
-                    </mat-form-field>
-                  </div>
 
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <mat-form-field>
-                      <mat-select placeholder="Select">
-                        <mat-option value="option">Option</mat-option>
-                        <mat-option value="option">Option2</mat-option>
-                        <mat-option value="option">Option3</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+              <app-user-profile-informations *ngIf="userDetails"
+                [user]="userDetails"
+                [isConnectedUser]="isConnectedUser">
+              </app-user-profile-informations>
 
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <mat-form-field>
-                      <textarea matInput placeholder="Textarea"></textarea>
-                    </mat-form-field>
-                  </div>
-                  <!-- column -->
-                  <div fxFlex.gt-sm="100" fxFlex="100">
-                    <button mat-raised-button color="primary">Update Profile</button>
-                  </div>
-                </div>
-              </form>
+
+              <!--&lt;!&ndash; ============================================================== &ndash;&gt;-->
+              <!--&lt;!&ndash; column &ndash;&gt;-->
+              <!--&lt;!&ndash; ============================================================== &ndash;&gt;-->
+              <!--<form class="basic-form">-->
+                <!--<div fxLayout="row wrap">-->
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<mat-form-field>-->
+                      <!--<input matInput placeholder="Some text value">-->
+                    <!--</mat-form-field>-->
+                  <!--</div>-->
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<mat-form-field>-->
+                      <!--<input matInput placeholder="EmailId" type="email">-->
+                    <!--</mat-form-field>-->
+                  <!--</div>-->
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<mat-form-field>-->
+                      <!--<input matInput placeholder="Password" type="password">-->
+                    <!--</mat-form-field>-->
+                  <!--</div>-->
+
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<mat-form-field>-->
+                      <!--<mat-select placeholder="Select">-->
+                        <!--<mat-option value="option">Option</mat-option>-->
+                        <!--<mat-option value="option">Option2</mat-option>-->
+                        <!--<mat-option value="option">Option3</mat-option>-->
+                      <!--</mat-select>-->
+                    <!--</mat-form-field>-->
+                  <!--</div>-->
+
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<mat-form-field>-->
+                      <!--<textarea matInput placeholder="Textarea"></textarea>-->
+                    <!--</mat-form-field>-->
+                  <!--</div>-->
+                  <!--&lt;!&ndash; column &ndash;&gt;-->
+                  <!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+                    <!--<button mat-raised-button color="primary">Update Profile</button>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</form>-->
             </mat-card-content>
           </mat-tab>
         </mat-tab-group>

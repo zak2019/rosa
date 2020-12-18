@@ -1,0 +1,53 @@
+<mat-sidenav-container class="display-middle">
+  <mat-sidenav-content>
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Complete your informations</mat-card-title>
+        <mat-card-subtitle>You've been invited by <b>{{associationData?.inviter.username}}</b> to join the
+          <b>{{associationData?.account.accountName}}</b> project<br>
+          Please complete your user name and your password to activate and access your account
+        </mat-card-subtitle>
+        <p>You Email: {{associationData?.invitedUser.email}}</p>
+    <form [formGroup]="completeRegistrationForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- userName -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="UserName" formControlName="username">
+        <!-- error-->
+        <mat-error *ngIf="!completeRegistrationForm.controls.username.untouched &&
+        !completeRegistrationForm.controls.username.valid">
+          Password must be at least <strong>3</strong> characters
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <!-- error-->
+        <mat-error *ngIf="!completeRegistrationForm.controls.password.untouched &&
+        !completeRegistrationForm.controls.password.valid">
+          Password must be at least <strong>6</strong> characters with at least <strong>one number</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <!-- Date picker -->
+      <!--<mat-form-field>-->
+      <!--<input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob"-->
+      <!--(dateChange)="date($event)">-->
+      <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+      <!--<mat-datepicker #picker></mat-datepicker>-->
+      <!--</mat-form-field>-->
+
+
+      <!-- On Submit -->
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary" [disabled]="!completeRegistrationForm.valid">Submit</button>
+      </div>
+
+    </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

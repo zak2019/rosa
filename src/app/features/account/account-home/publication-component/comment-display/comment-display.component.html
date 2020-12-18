@@ -21,7 +21,7 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu4="matMenu">
-      <button mat-menu-item (click)="confirmDeleteComment(eventComment, index)">
+      <button mat-menu-item *ngIf="secretUserId === eventComment?.user?.secretId" (click)="confirmDeleteComment(eventComment, index)">
         <mat-icon>voicemail</mat-icon>
         <span>Delete</span>
       </button>

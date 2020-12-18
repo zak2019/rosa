@@ -50,45 +50,11 @@
             </button>
           </li>
           <mat-menu #menu="matMenu">
-            <div class="popup-content">
-              <table>
-                <tr>
-                  <td class="border-right">
-                    <div>
-                      <img src="assets/icons/weather/sunnyClear.png" width="30" alt="sun + cloud" class="img-circle">
-                    </div>
-                    <div>
-                      {{sunnyClearWeatherNumber}}
-                    </div>
-                  </td>
-                  <td class="border-bottom">
-                    <div>
-                      <img src="assets/icons/weather/sunCloud.png" width="30" alt="sun + cloud" class="img-circle">
-                    </div>
-                    <div>
-                      {{sunnyCloudWeatherNumber}}
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-top">
-                    <div>
-                      <img src="assets/icons/weather/rainy.png" width="30" alt="sun + cloud" class="img-circle">
-                    </div>
-                    <div> {{rainyWeatherNumber}}
-                    </div>
-                  </td>
-                  <td class="border-left">
-                    <div>
-                      <img src="assets/icons/weather/storm.png" width="30" alt="sun + cloud" class="img-circle">
-                    </div>
-                    <div>
-                      {{stormWeatherNumber}}
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </div>
+            <app-weather-table [rainyWeatherNumber]="rainyWeatherNumber"
+                               [stormWeatherNumber]="stormWeatherNumber"
+                               [sunnyClearWeatherNumber]="sunnyClearWeatherNumber"
+                               [sunnyCloudWeatherNumber]="sunnyCloudWeatherNumber">
+            </app-weather-table>
           </mat-menu>
         </ul>
       </div>
@@ -164,6 +130,6 @@
         </div>
       </div>
     </div>
-    <app-comment-display *ngIf="showComments" [userId]="userId" [event]="event"></app-comment-display>
+    <app-comment-display *ngIf="showComments" [secretUserId]="secretUserId" [event]="event"></app-comment-display>
   </mat-card-content>
 </mat-card>

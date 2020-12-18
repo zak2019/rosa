@@ -24,6 +24,10 @@ import {AddTeamDialogComponent} from "./account-users-management/groups-list-tab
 import {LinkUsersToTeamDialogComponent} from "./account-users-management/groups-list-table/link-users-to-team-dialog/link-users-to-team-dialog.component";
 import {LinkUserToExistingTeamDialogComponent} from "./account-users-management/users-list-table/link-user-to-existing-team-dialog/link-user-to-existing-team-dialog.component";
 import {MultiSelectDatePickerModule} from "../../../shared/multiSelectDatePicker/multi-select-date-picker.module";
+import {EventsListTableComponent} from "./admin-dashboard/events-list-table/events-list-table.component";
+import {VerticalBarChartModule} from "../../../shared/vertical-bar-chart/vertical-bar-chart.module";
+import {GroupedVerticalBarChartModule} from "../../../shared/grouped-vertical-bar-chart/grouped-vertical-bar-chart.module";
+import {WeatherTableModule} from "../../../shared/weather-table/weather-table.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import {MultiSelectDatePickerModule} from "../../../shared/multiSelectDatePicker
     AccountReportsComponent,
     AccountUsersManagementComponent,
     AdminDashboardComponent,
+    EventsListTableComponent,
     UsersListTableComponent,
     GroupsListTableComponent,
     CustomPaginationComponent,
@@ -54,6 +59,9 @@ import {MultiSelectDatePickerModule} from "../../../shared/multiSelectDatePicker
     NavigationMenuModule,
     MultiSelectDatePickerModule,
     MatDialogModule,
+    VerticalBarChartModule,
+    GroupedVerticalBarChartModule,
+    WeatherTableModule,
   ],
   exports: [
     AdminComponent

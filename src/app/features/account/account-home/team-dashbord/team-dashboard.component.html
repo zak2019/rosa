@@ -10,8 +10,7 @@
 
         <div fxFlex.gt-lg="55" fxFlex.gt-md="55" fxFlex.gt-xs="100" fxFlex="100">
           <div *ngFor="let event of eventList">
-            <app-publication [event]="event"
-                             [userId]="userId">	<mat-spinner></mat-spinner></app-publication>
+            <app-publication [event]="event">	<mat-spinner></mat-spinner></app-publication>
           </div>
           <button (click)="getMoreEvents()"> more events</button>
         </div>

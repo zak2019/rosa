@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../core/services/user.service';
-import {User} from '../../core/model/user';
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavigationMenu} from "../../core/model/navigation-menu";
 import {NavigationMenuService} from "../../core/services/navigation-menu.service";

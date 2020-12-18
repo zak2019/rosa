@@ -1,0 +1,88 @@
+<div fxFlex="100">
+
+        <div  class="p-b-20 b-b m-b-30" *ngIf="!editUserName">
+         <div>
+           User name: {{user.username}}
+         </div>
+          <div *ngIf="isConnectedUser">
+            <!--<ul class="list-inline">-->
+              <!--<li>-->
+                <h6 class="text-success m-0"
+                    (click)="collapse(); buildUserNameForm();
+                    editUserName = !editUserName">
+                  Edit
+                </h6>
+              <!--</li>-->
+            <!--</ul>-->
+          </div>
+        </div>
+        <div class="p-b-20 b-b m-b-30" *ngIf="editUserName">
+          <h4 class="m-10">Current User Name:
+            <small class="text-muted"> {{user.username}}</small>
+          </h4>
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex="100">
+              <form class="basic-form">
+                <div fxLayout="row wrap">
+                  <!-- column -->
+                  <div fxFlex.gt-sm="100" fxFlex="100">
+                    <mat-form-field>
+                      <input matInput placeholder="Some text value"
+                             [formControl]="editUserNameForm.controls['userName']">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button class="btn btn-sm btn-default saveButton" [disabled]="!editUserNameForm?.valid"
+                        (click)="updateUser(); editUserName = !editUserName">Save
+                </button>
+                <button (click)="editUserName = !editUserName" class="btn btn-sm btn-primary cancelButtom">
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      <div  class="p-b-20 b-b m-b-30" *ngIf="!editPassword">
+        <div>
+          Password: ********
+        </div>
+        <div *ngIf="isConnectedUser">
+          <!--<ul class="list-inline">-->
+          <!--<li>-->
+          <h6 class="text-success m-0"
+              (click)="collapse(); buildPasswordForm();
+                    editPassword = !editPassword">
+            Edit
+          </h6>
+          <!--</li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <div class="p-b-20 b-b m-b-30" *ngIf="editPassword">
+        <h4 class="m-10">Current User Password:
+          <small class="text-muted"> *********</small>
+        </h4>
+        <div fxLayout="row wrap">
+          <div fxFlex.gt-sm="100" fxFlex="100">
+            <form class="basic-form">
+              <div fxLayout="row wrap">
+                <!-- column -->
+                <div fxFlex.gt-sm="100" fxFlex="100">
+                  <mat-form-field>
+                    <input matInput placeholder="Some text value">
+                  </mat-form-field>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-default saveButton" [disabled]="!editPasswordForm?.valid"
+                      (click)="updateUser(); editPassword = !editPassword">Save
+              </button>
+              <button (click)="editPassword = !editPassword" class="btn btn-sm btn-primary cancelButtom">
+                Cancel
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+</div>

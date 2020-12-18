@@ -1,0 +1,19 @@
+<mat-sidenav-container class="display-middle">
+  <mat-sidenav-content>
+    <mat-card>
+      <mat-card-content *ngIf="success">
+        <mat-card-title>Congratulation</mat-card-title>
+        <mat-card-subtitle>Your account and email address have been verified</mat-card-subtitle>
+        <button mat-flat-button color="primary" [routerLink]="'/login'" >Go to log in page</button>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="!success">
+        <mat-card-title>{{errorMessage}}</mat-card-title>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="inProgress">
+        <mat-card-title>Checking in progress...</mat-card-title>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

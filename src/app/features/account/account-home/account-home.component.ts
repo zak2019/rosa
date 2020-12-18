@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from "rxjs/internal/Subject";
+import {EventWebsocketService} from "../../../core/services/socket/event-socket/event.websocket.service";
 
 
 @Component({
@@ -16,7 +17,6 @@ export class AccountHomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   }
-
 
   ngOnDestroy(): void {
     this.ngUnSubscribe.next();

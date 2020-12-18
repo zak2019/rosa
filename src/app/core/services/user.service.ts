@@ -29,6 +29,11 @@ export class UserService {
     return this.http.get(API_URL + 'user/userId/' + userId);
   }
 
+  updateUser(user: User):Observable<any> {
+    const url = API_URL + 'user/update/';
+    return this.http.post(url, user, httpOptions);
+  }
+
   public getUsersByAdminIdAndAccount(pageable: Pageable,
                            searchStr: string,
                            idUser: String,
@@ -47,6 +52,12 @@ export class UserService {
   inviteNewUsers(newUsers, accountId: string): Observable<any> {
     const url = API_URL + 'user/invite-users/' + accountId;
     return this.http.post(url, {emails: newUsers}, httpOptions);
+  }
+
+  completeUserRegistration(userAssocId: string, userData: User): Observable<any> {
+    const url = API_URL + 'user/complete-account/' + userAssocId;
+    return this.http.post(url, userData, httpOptions);
+
   }
 
 }

@@ -21,7 +21,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class PublicationComponent implements OnInit, OnDestroy {
 
   @Input() event: Event;
-  @Input() userId: string;
+  secretUserId: string;
+  userId: string;
   dateDifferenceLabel: string;
   stormWeatherNumber: number;
   rainyWeatherNumber: number;
@@ -40,10 +41,13 @@ export class PublicationComponent implements OnInit, OnDestroy {
 
   constructor(private dateService: DateService,
               private eventWeatherService: EventWeatherService,
-              private eventCommentService: EventCommentService) {
+              private eventCommentService: EventCommentService,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
+    this.secretUserId = this.tokenStorageService.getUser().secretId;
+    this.userId = this.tokenStorageService.getUser().userId;
     this.sortCommentList();
     this.dateDifference();
     this.getCurrentUserEventWeather();
@@ -65,7 +69,7 @@ export class PublicationComponent implements OnInit, OnDestroy {
   }
 
   private getCurrentUserEventWeather() {
-    const userEventWeather = this.event.eventWeatherSet.filter(weather => weather.user.userId === this.userId);
+    const userEventWeather = this.event.eventWeatherSet.filter(weather => weather.user.secretId === this.secretUserId);
     if(userEventWeather && userEventWeather.length > 0) {
       this.activateSelectedEventWeather(userEventWeather[0]);
       this.setWeatherNumbers();

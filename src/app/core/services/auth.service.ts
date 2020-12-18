@@ -22,13 +22,17 @@ export class AuthService {
 
   login(credentials): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
-      username: credentials.username,
+      email: credentials.email,
       password: credentials.password
     }, httpOptions);
   }
 
   register(registerData): Observable<any> {
     return this.http.post(AUTH_API + 'signup', registerData, httpOptions);
+  }
+
+  userVerification(associationId, tokenId): Observable<any> {
+    return this.http.get(AUTH_API + 'account/' + associationId + '/confirm?t=' + tokenId);
   }
 
   updateUserState(state: boolean) {

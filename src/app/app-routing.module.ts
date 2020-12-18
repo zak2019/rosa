@@ -7,11 +7,16 @@ import {AccountsListComponent} from "./features/acounts-list/accounts-list.compo
 import {ErrorPageComponent} from "./features/error-page/error-page.component";
 import {AuthGuardService} from "../@shared/guards/auth-guard.service";
 import {NotAuthGuardService} from "../@shared/guards/not-auth-guard.service";
+import {UserVerificationComponent} from "./features/user-verification/user-verification.component";
+import {CompleteRegistrationComponent} from "./features/complete-registration/complete-registration.component";
 
 const routes: Routes = [
   {path: '', component: AccountsListComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent, canActivate: [NotAuthGuardService]},
+  {path: 'user-verification/:associationId/:tokenId', component: UserVerificationComponent, canActivate: [NotAuthGuardService]},
   {path: 'register', component: RegisterComponent, canActivate: [NotAuthGuardService]},
+  {path: 'complete-registration/:associationId',
+    component: CompleteRegistrationComponent, canActivate: [NotAuthGuardService]},
   {path: 'accounts-list', component: AccountsListComponent, canActivate: [AuthGuardService]},
   {
     path: 'account/:accountId',

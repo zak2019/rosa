@@ -12,11 +12,13 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {MatDialogModule} from "@angular/material/dialog";
+import {UserProfileInformationsComponent} from "./user-profile-dashboard/user-profile-informations/user-profile-informations.component";
 
 @NgModule({
   declarations: [
     UserProfileComponent,
     UserProfileDashboardComponent,
+    UserProfileInformationsComponent,
     UserProfileNotificationsComponent,
   ],
   imports: [
